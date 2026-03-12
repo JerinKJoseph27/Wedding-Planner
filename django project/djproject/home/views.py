@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .forms import Bookingform
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.urls import reverse
 
 # Create your views here.
 
@@ -12,7 +13,7 @@ def index(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Thank you! Your enquiry has been submitted. We'll get back to you within 24 hours.")
-            return redirect('home')
+            return redirect(f"{reverse('home')}#enquiry")
     else:
         form = Bookingform()
     return render(request, 'index.html', {'form': form})
