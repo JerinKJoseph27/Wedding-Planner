@@ -1,5 +1,4 @@
 {
-    "python-envs.defaultEnvManager": "ms-python.python:system",
     "python.defaultInterpreterPath": "C:/Users/johnk/Downloads/django project/django project/djvenv/Scripts/python.exe",
     "python.analysis.extraPaths": [
         "./django project/djproject"
