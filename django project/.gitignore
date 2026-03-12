@@ -1,0 +1,30 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+djvenv/
+.venv/
+venv/
+env/
+
+# Django local database and logs
+djproject/db.sqlite3
+*.sqlite3
+*.log
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Django collected/static build output
+staticfiles/
+media/
+
+# Editor/system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

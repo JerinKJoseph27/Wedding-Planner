@@ -1,0 +1,12 @@
+# Project dependencies for djproject
+# Created: 2026-03-12
+# Install with: pip install -r requirements.txt
+# Python used in this project: 3.13.1
+
+Django==5.1.6
+django-crispy-forms==2.3
+
+# Django runtime dependencies (pinned for reproducible installs)
+asgiref==3.8.1
+sqlparse==0.5.3
+tzdata==2025.1
