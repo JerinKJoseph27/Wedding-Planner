@@ -6,55 +6,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SHINDIGER EVENTS</title>
-    <link rel="stylesheet" href="lightbox.css" />
-    <link rel="stylesheet" href="{% static '/css/style.css'%}"/>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-
-    <style>
-        .containere{
-            width: 100%;
-            height: 300px;
-            background-color: white;
-            font-size: 20px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column-reverse;
-        
-        }
-        #but{
-            width: 80px;
-            background-color: brown;
-            color: white;
-        }
-        #id_p_name ,#id_p_email,#id_p_phone,#id_p_when,#id_p_events{
-            border: 1px solid black;
-        }
-        </style>
+    <title>Shindiger Events</title>
+    <link rel="stylesheet" href="{% static '/css/lightbox.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/style.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
   </head>
-
   <body>
     <header class="head">
-      <a href="#" class="logo"
-        <span>SHINDIGER EVENTS</span>&nbsp; 
+      <a href="#home" class="logo">
+        <span>Shindiger Events</span>
       </a>
       <nav class="navbar">
         <a href="#" class="active">Home</a>
-        
         <a href="#service">Services</a>
         <a href="#invite">E-invites</a>
-        <a href="#contact">Reach us</a>
-        <a href="/admin/">Login</a>
-        
+        <a href="#enquiry">Enquiry</a>
+        <a href="#contact">Contact</a>
       </nav>
       <div id="menu-bar"><i class="fas fa-bars"></i></div>
     </header>
-    /*--------------------------home section--------------------------*/
+
+    <!-- Home Section -->
     <section class="home" id="home">
       <form action="#">
           <div class="search-box">
@@ -71,179 +43,161 @@
               <select type="text" class="search-field">
           <option disabled selected>City</option>
           <option value="Bengaluru">Bengaluru</option>
-          <option value="Hydreabad">Hydreabad</option>
+          <option value="Hyderabad">Hyderabad</option>
           <option value="Goa">Goa</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Ahmedabad">Ahmedabad</option>
       </select>
               <button class="btn">Search</button>
           </div>
       </form>
-      
-  </section>
-  
-   <!------------------------services-------------------->
-   <section class="service" id="service"  >
+    </section>
+
+    <!-- Services Section -->
+    <section class="service" id="service">
     <div class="title">
-        <h1><span>S</span>ervice</h1>
+        <h1><span>S</span>ervices</h1>
     </div>
-   
     <div class="services-row">
         <div class="services-col">
             <i class="fas fa-book-open"></i>
             <h2>invitation</h2>
-            <p>Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.</p>
+            <p>Beautiful custom invitations crafted to set the tone for your perfect day.</p>
         </div>
         <div class="services-col">
             <i class="fas fa-camera"></i>
             <h2>Photography & Video</h2>
-            <p>Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.</p>
+            <p>Capturing every precious moment with artistic photography and videography.</p>
         </div>
         <div class="services-col">
             <i class="fas fa-brush"></i>
             <h2>Beauty & Makeup</h2>
-            <p>Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.</p>
+            <p>Expert stylists to make you look and feel your absolute best.</p>
         </div>
         <div class="services-col">
             <i class="fab fa-pagelines"></i>
             <h2>Wedding flowers</h2>
-            <p>Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.</p>
+            <p>Elegant floral arrangements that bring your wedding vision to life.</p>
         </div>
         <div class="services-col">
             <i class="fas fa-birthday-cake"></i>
             <h2>wedding cake</h2>
-            <p>Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.</p>
+            <p>Custom-designed cakes that taste as good as they look.</p>
         </div>
         <div class="services-col">
             <i class="fas fa-music"></i>
             <h2>music band</h2>
-            <p>Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.</p>
+            <p>Live performances to fill your celebration with unforgettable music.</p>
         </div>
         <div class="services-col">
             <i class="fas fa-utensils"></i>
             <h2>Catering</h2>
-            <p>Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.</p>
+            <p>Exquisite menus curated for your guests by top-rated caterers.</p>
         </div>
         <div class="services-col">
             <i class="fas fa-ring"></i>
             <h2>Jewellery</h2>
-            <p>Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.</p>
+            <p>Stunning jewellery collections to complete your bridal look.</p>
         </div>
     </div>
-    
-</section>
+    </section>
 
-<!------------------E-invitation------------------>
-<section class="invite" id="invite">
+    <!-- E-invitation Section -->
+    <section class="invite" id="invite">
   <div class="title">
-      <h1>Card<span>Design</span></h1>
-      <p>Choose the best card Design.</p>
+      <h1>Card <span>Designs</span></h1>
+      <p>Choose from our exclusive collection of wedding card designs.</p>
   </div>
   <div class="invitation-row">
       <div class="invitation-box">
         <a href="{% static '/images/cardA.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/cardA.jpg'%}" alt="">
+            <img src="{% static '/images/cardA.jpg'%}" alt="Wedding Card Design A">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card2.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card2.jpg'%}" alt="">
+            <img src="{% static '/images/card2.jpg'%}" alt="Wedding Card Design 2">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card3.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card3.jpg'%}" alt="">
+            <img src="{% static '/images/card3.jpg'%}" alt="Wedding Card Design 3">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card4.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card4.jpg'%}" alt="">
+            <img src="{% static '/images/card4.jpg'%}" alt="Wedding Card Design 4">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card5.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card5.jpg'%}" alt="">
+            <img src="{% static '/images/card5.jpg'%}" alt="Wedding Card Design 5">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card6.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card6.jpg'%}" alt="">
+            <img src="{% static '/images/card6.jpg'%}" alt="Wedding Card Design 6">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card7.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card7.jpg'%}" alt="">
+            <img src="{% static '/images/card7.jpg'%}" alt="Wedding Card Design 7">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card8.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card8.jpg'%}" alt="">
+            <img src="{% static '/images/card8.jpg'%}" alt="Wedding Card Design 8">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card9.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card9.jpg'%}" alt="">
+            <img src="{% static '/images/card9.jpg'%}" alt="Wedding Card Design 9">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card10.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card10.jpg'%}" alt="">
+            <img src="{% static '/images/card10.jpg'%}" alt="Wedding Card Design 10">
         </a>   
       </div>
-
       <div class="invitation-box">
         <a href="{% static '/images/card11.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card11.jpg'%}" alt="">
+            <img src="{% static '/images/card11.jpg'%}" alt="Wedding Card Design 11">
         </a>   
       </div>
-      
       <div class="invitation-box">
         <a href="{% static '/images/card12.jpg'%}" data-lightbox="models">
-            <img src="{% static '/images/card12.jpg'%}" alt="">
+            <img src="{% static '/images/card12.jpg'%}" alt="Wedding Card Design 12">
         </a>   
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-     
   </div>
-</section>
-<center>
-<div class="containere">
-    
-<form action="" method="POST">
-    {% csrf_token %}
- {{form.as_p}}
- <button type="submit" id="but">SUBMIT</button>
-</form>
-<h1>Enquiry Form</h1>
-</div>
-<center>
+    </section>
 
+    <!-- Enquiry Section -->
+    <section class="enquiry" id="enquiry">
+      <div class="title">
+        <h1>Book Your <span>Event</span></h1>
+        <p>Fill in the form and we'll get back to you within 24 hours.</p>
+      </div>
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+      <div class="enquiry-form-wrapper">
+        <form action="" method="POST">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit" class="btn btn-submit">Submit Enquiry</button>
+        </form>
+      </div>
+    </section>
 
-
-<!--------------------------------------------footer section--------------------------->
-<footer id="contact">
+    <!-- Footer -->
+    <footer id="contact">
   <div class="container">
       <div class="f-container">
-          <h2>WedMeGood - Your Personal Wedding Planner</h2><br>
-          <p>Plan your wedding with Us WedMeGood is an Indian Wedding Planning Website </p>
+          <h2>Shindiger Events</h2>
+          <p>Your personal wedding planner — crafting unforgettable celebrations across India.</p>
           <div>
               <button class="btn">Register as a Vendor</button>
           </div>
@@ -256,44 +210,38 @@
           </div>
       </div>
       <div class="f-container">
-          <h2>Our Location</h2>
-          <a href="#"><i class="fas fa-angle-right"></i>Anand</a>
-          <a href="#"><i class="fas fa-angle-right"></i>Vadodara</a>
-          <a href="#"><i class="fas fa-angle-right"></i>Mumbai</a>
-          <a href="#" "><i class=" fas fa-angle-right "></i>Ahemdabad</a>
-              <a href="# "><i class="fas fa-angle-right "></i>Surat</a>
-          </div>
-          
-          <div class="f-container ">
-              <h2>Our Newsletter</h2>
-              <p>Subscribe for latest updates</p>
-              <input type="text " placeholder="Enter Your Email ">
-              <button class="btn ">Subscribe</button>
-              </div>
+          <h2>Our Locations</h2>
+          <a href="#"><i class="fas fa-angle-right"></i> Anand</a>
+          <a href="#"><i class="fas fa-angle-right"></i> Vadodara</a>
+          <a href="#"><i class="fas fa-angle-right"></i> Mumbai</a>
+          <a href="#"><i class="fas fa-angle-right"></i> Ahmedabad</a>
+          <a href="#"><i class="fas fa-angle-right"></i> Surat</a>
       </div>
-  </footer>
-  <div class="copyright ">
-      <p>Copyright ©2022 All Rights Reserved | Knowledge Place KP</p>
+      <div class="f-container">
+          <h2>Newsletter</h2>
+          <p>Subscribe for latest updates and offers.</p>
+          <input type="email" placeholder="Enter your email">
+          <button class="btn">Subscribe</button>
+      </div>
   </div>
-</body>
+    </footer>
+    <div class="copyright">
+      <p>Copyright &copy;2026 All Rights Reserved | Shindiger Events</p>
+    </div>
 
-<script src="lightbox-plus-jquery.js"></script>
+    <script src="{% static '/js/lightbox-plus-jquery.js' %}"></script>
+    <script>
+      let menu = document.querySelector('#menu-bar');
+      let navbar = document.querySelector('.head .navbar');
 
-<script>
-let menu = document.querySelector('#menu-bar');
-let head = document.querySelector('.head .navbar');
+      menu.onclick = () => {
+        navbar.classList.toggle('active');
+      };
 
-menu.onclick = () => {
-  head.classList.toggle('active');
-};
-
-window.onscroll = () => {
-  head.classList.remove('active');
-  if (window.scrollY > 60) {
-      document.querySelector('#menu-bar').classList.add('active');
-  } else {
-      document.querySelector('#menu-bar').classList.remove('active');
-  }
-};
-</script>    
+      window.onscroll = () => {
+        navbar.classList.remove('active');
+        document.querySelector('#menu-bar').classList.toggle('active', window.scrollY > 60);
+      };
+    </script>
+  </body>
 </html>
