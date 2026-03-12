@@ -232,10 +232,37 @@
                   <div class="alert alert-{{ message.tags }}">{{ message }}</div>
                 {% endfor %}
               {% endif %}
-              <form action="" method="POST">
+              <form action="" method="POST" id="enquiryForm" novalidate>
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary btn-submit">Submit enquiry</button>
+                <div class="form-row">
+                  <label for="{{ form.p_name.id_for_label }}">{{ form.p_name.label }}</label>
+                  {{ form.p_name }}
+                  {% if form.p_name.errors %}<span class="field-error-msg">{{ form.p_name.errors.0 }}</span>{% endif %}
+                </div>
+                <div class="form-row">
+                  <label for="{{ form.p_email.id_for_label }}">{{ form.p_email.label }}</label>
+                  {{ form.p_email }}
+                  {% if form.p_email.errors %}<span class="field-error-msg">{{ form.p_email.errors.0 }}</span>{% endif %}
+                </div>
+                <div class="form-row">
+                  <label for="{{ form.p_phone.id_for_label }}">{{ form.p_phone.label }}</label>
+                  {{ form.p_phone }}
+                  {% if form.p_phone.errors %}<span class="field-error-msg">{{ form.p_phone.errors.0 }}</span>{% endif %}
+                </div>
+                <div class="form-row">
+                  <label for="{{ form.p_when.id_for_label }}">{{ form.p_when.label }}</label>
+                  {{ form.p_when }}
+                  {% if form.p_when.errors %}<span class="field-error-msg">{{ form.p_when.errors.0 }}</span>{% endif %}
+                </div>
+                <div class="form-row">
+                  <label for="{{ form.p_events.id_for_label }}">{{ form.p_events.label }}</label>
+                  {{ form.p_events }}
+                  {% if form.p_events.errors %}<span class="field-error-msg">{{ form.p_events.errors.0 }}</span>{% endif %}
+                </div>
+                <div class="enquiry-form-actions">
+                  <button type="reset" class="btn btn-secondary">Clear form</button>
+                  <button type="submit" class="btn btn-primary btn-submit">Submit enquiry</button>
+                </div>
               </form>
             </article>
           </div>
@@ -290,6 +317,50 @@
       window.addEventListener('scroll', () => {
         siteNav.classList.remove('active');
       });
+
+      // Enquiry form client-side validation
+      var enquiryForm = document.getElementById('enquiryForm');
+      if (enquiryForm) {
+        enquiryForm.addEventListener('submit', function(e) {
+          document.querySelectorAll('.js-err').forEach(function(el){ el.remove(); });
+          var ok = true;
+          var name   = document.getElementById('id_p_name');
+          var email  = document.getElementById('id_p_email');
+          var phone  = document.getElementById('id_p_phone');
+          var date   = document.getElementById('id_p_when');
+          var events = document.getElementById('id_p_events');
+          if (!name.value.trim() || name.value.trim().length < 2) {
+            addEnqErr(name, 'Name must be at least 2 characters.'); ok = false;
+          } else if (!/^[A-Za-z ]+$/.test(name.value.trim())) {
+            addEnqErr(name, 'Name can only contain letters and spaces.'); ok = false;
+          }
+          if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+            addEnqErr(email, 'Enter a valid email address.'); ok = false;
+          }
+          var digits = phone.value.replace(/\D/g, '');
+          if (digits.length < 10 || digits.length > 14) {
+            addEnqErr(phone, 'Contact number must be 10–14 digits.'); ok = false;
+          }
+          if (!date.value) {
+            addEnqErr(date, 'Please select an event date.'); ok = false;
+          } else {
+            var today = new Date(); today.setHours(0,0,0,0);
+            if (new Date(date.value) < today) {
+              addEnqErr(date, 'Event date cannot be in the past.'); ok = false;
+            }
+          }
+          if (!events.value) {
+            addEnqErr(events, 'Please select an event type.'); ok = false;
+          }
+          if (!ok) e.preventDefault();
+        });
+      }
+      function addEnqErr(field, msg) {
+        var s = document.createElement('span');
+        s.className = 'field-error-msg js-err';
+        s.textContent = msg;
+        field.insertAdjacentElement('afterend', s);
+      }
     </script>
   </body>
 </html>

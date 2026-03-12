@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: #080710;
+    background-color: #15080b;
 }
 .background{
     width: 430px;
@@ -35,8 +35,8 @@ body{
 }
 .shape:first-child{
     background: linear-gradient(
-        #1845ad,
-        #23a2f6
+        #b91c1c,
+        #ef4444
     );
     left: -80px;
     top: -80px;
@@ -44,14 +44,15 @@ body{
 .shape:last-child{
     background: linear-gradient(
         to right,
-        #ff512f,
-        #f09819
+        #ef4444,
+        #ffe4e6
     );
     right: -30px;
     bottom: -80px;
 }
 form{
-    height: 600px;
+    height: auto;
+    min-height: 600px;
     width: 450px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -131,6 +132,45 @@ button{
 .social i{
   margin-right: 4px;
 }
+.field-error{
+  display:block;
+  color:#ff8080;
+  font-size:12px;
+  margin-top:3px;
+  font-weight:500;
+}
+.form-actions{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:10px;
+  margin-top:20px;
+}
+.form-actions button{
+  margin-top:0;
+  width:100%;
+  padding:13px 0;
+  font-size:16px;
+  font-weight:600;
+  border-radius:5px;
+  cursor:pointer;
+  font-family:'Poppins',sans-serif;
+}
+.btn-submit-main{background-color:#ffffff;color:#080710;}
+.btn-reset{
+  background:rgba(255,255,255,0.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.2) !important;
+}
+.btn-reset:hover{background:rgba(255,255,255,0.22);}
+form a{
+  display:block;
+  margin-top:16px;
+  text-align:center;
+  font-size:14px;
+    color:#fecaca;
+  text-decoration:none;
+}
+form a:hover{text-decoration:underline;}
 
     </style>
 </head>
@@ -139,25 +179,57 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="" method="post">
-        {% csrf_token %} 
-        <h3>Signup Here</h3>
-
-        <label for="username">Username</label>
-        <input type="text" placeholder="Username" name="username" id="username">
-
-        <label for="email">Email</label>
-        <input type="email" placeholder="Email or Phone" name="email" id="email">
-
-        <label for="password1">Password</label>
-        <input type="password" placeholder="Password" id="password1" name="password1">
-
-
-        <label for="password2">Confrom Password</label>
-        <input type="password" placeholder="Confrom Password" id="password2" name="password2">
-        <button type="submit">Signup</button>
-        
-        <a href="{% url 'loginpage' %}" >i have already account</a>
+    <form method="post" id="signupForm" novalidate>
+        {% csrf_token %}
+        <h3>Sign Up</h3>
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+        {% if form.username.errors %}<span class="field-error">{{ form.username.errors.0 }}</span>{% endif %}
+        <label for="{{ form.email.id_for_label }}">Email</label>
+        {{ form.email }}
+        {% if form.email.errors %}<span class="field-error">{{ form.email.errors.0 }}</span>{% endif %}
+        <label for="{{ form.password1.id_for_label }}">Password</label>
+        {{ form.password1 }}
+        {% if form.password1.errors %}<span class="field-error">{{ form.password1.errors.0 }}</span>{% endif %}
+        <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+        {{ form.password2 }}
+        {% if form.password2.errors %}<span class="field-error">{{ form.password2.errors.0 }}</span>{% endif %}
+        <div class="form-actions">
+            <button type="reset" class="btn-reset">Clear</button>
+            <button type="submit" class="btn-submit-main">Sign Up</button>
+        </div>
+        <a href="{% url 'loginpage' %}">Already have an account? Log in</a>
     </form>
+    <script>
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        document.querySelectorAll('.js-err').forEach(function(el){ el.remove(); });
+        var ok = true;
+        var u  = document.getElementById('id_username');
+        var em = document.getElementById('id_email');
+        var p1 = document.getElementById('id_password1');
+        var p2 = document.getElementById('id_password2');
+        if (!u.value.trim() || u.value.trim().length < 3) {
+            addErr(u, 'Username must be at least 3 characters.'); ok = false;
+        } else if (!/^[A-Za-z0-9_]+$/.test(u.value.trim())) {
+            addErr(u, 'Only letters, numbers, and underscores allowed.'); ok = false;
+        }
+        if (!em.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())) {
+            addErr(em, 'Enter a valid email address.'); ok = false;
+        }
+        if (p1.value.length < 8) {
+            addErr(p1, 'Password must be at least 8 characters.'); ok = false;
+        }
+        if (p2.value !== p1.value) {
+            addErr(p2, 'Passwords do not match.'); ok = false;
+        }
+        if (!ok) e.preventDefault();
+    });
+    function addErr(field, msg) {
+        var s = document.createElement('span');
+        s.className = 'field-error js-err';
+        s.textContent = msg;
+        field.insertAdjacentElement('afterend', s);
+    }
+    </script>
 </body>
 </html>

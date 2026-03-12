@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
-  --bg: #14161d;
-  --bg-soft: #1b1f29;
+  --bg: #1b0d10;
+  --bg-soft: #291217;
   --panel: rgba(255, 255, 255, 0.06);
   --panel-strong: rgba(255, 255, 255, 0.1);
   --border: #ffffff10;
-  --text: #f5f7ff;
-  --text-muted: #a8afc3;
-  --accent: #8b5cf6;
-  --accent-soft: rgba(139, 92, 246, 0.18);
+  --text: #fff7f8;
+  --text-muted: #e7c9cf;
+  --accent: #dc2626;
+  --accent-soft: rgba(220, 38, 38, 0.2);
   --success-bg: rgba(56, 189, 124, 0.12);
   --success-text: #8bf1bc;
   --error-bg: rgba(248, 113, 113, 0.12);
@@ -44,9 +44,9 @@ body {
   min-height: 100vh;
   font-family: "Inter", sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 28%),
-    radial-gradient(circle at 85% 15%, rgba(99, 102, 241, 0.18), transparent 24%),
-    linear-gradient(180deg, #11131a 0%, #171a22 38%, #11131a 100%);
+    radial-gradient(circle at top left, rgba(220, 38, 38, 0.2), transparent 28%),
+    radial-gradient(circle at 85% 15%, rgba(239, 68, 68, 0.16), transparent 24%),
+    linear-gradient(180deg, #14090c 0%, #1e0d12 38%, #14090c 100%);
   color: var(--text);
 }
 
@@ -76,7 +76,7 @@ html::-webkit-scrollbar {
 
 html::-webkit-scrollbar-thumb {
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(139, 92, 246, 0.9), rgba(99, 102, 241, 0.9));
+  background: linear-gradient(180deg, rgba(220, 38, 38, 0.9), rgba(185, 28, 28, 0.9));
 }
 
 .page-shell {
@@ -108,7 +108,7 @@ html::-webkit-scrollbar-thumb {
   gap: var(--space-3);
   padding: 16px 24px;
   margin-bottom: 24px;
-  background: rgba(20, 22, 29, 0.72);
+  background: rgba(44, 14, 18, 0.72);
   border: 1px solid var(--border);
   border-radius: 999px;
   backdrop-filter: blur(20px);
@@ -129,11 +129,11 @@ html::-webkit-scrollbar-thumb {
   width: 40px;
   height: 40px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--accent), #5b7cff);
+  background: linear-gradient(135deg, var(--accent), #b91c1c);
   color: #ffffff;
   font-size: 1.7rem;
   font-weight: 800;
-  box-shadow: 0 18px 30px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 18px 30px rgba(220, 38, 38, 0.35);
 }
 
 .brand-text {
@@ -199,7 +199,7 @@ html::-webkit-scrollbar-thumb {
   min-height: 520px;
   background:
     linear-gradient(150deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03)),
-    radial-gradient(circle at top right, rgba(139, 92, 246, 0.28), transparent 32%);
+    radial-gradient(circle at top right, rgba(220, 38, 38, 0.26), transparent 32%);
 }
 
 .statement-card {
@@ -226,7 +226,7 @@ html::-webkit-scrollbar-thumb {
 
 .eyebrow,
 .card-label {
-  color: #c9cfe0;
+  color: #f7dde1;
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -292,9 +292,9 @@ html::-webkit-scrollbar-thumb {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #6677ff);
+  background: linear-gradient(135deg, var(--accent), #b91c1c);
   color: #ffffff;
-  box-shadow: 0 18px 36px rgba(139, 92, 246, 0.32);
+  box-shadow: 0 18px 36px rgba(220, 38, 38, 0.35);
 }
 
 .btn-secondary {
@@ -325,7 +325,7 @@ html::-webkit-scrollbar-thumb {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #cfd4e5;
+  color: #ffd9de;
 }
 
 .search-field,
@@ -347,8 +347,8 @@ html::-webkit-scrollbar-thumb {
 .newsletter-field input:focus,
 .enquiry-form-card input:focus,
 .enquiry-form-card select:focus {
-  border-color: rgba(139, 92, 246, 0.55);
-  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.14);
+  border-color: rgba(220, 38, 38, 0.6);
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.16);
   background: rgba(255, 255, 255, 0.09);
 }
 
@@ -405,7 +405,7 @@ html::-webkit-scrollbar-thumb {
   height: 8px;
   border-radius: 999px;
   background: var(--accent);
-  box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.12);
+  box-shadow: 0 0 0 6px rgba(220, 38, 38, 0.14);
 }
 
 .section-heading {
@@ -453,7 +453,7 @@ html::-webkit-scrollbar-thumb {
   height: 52px;
   border-radius: 16px;
   background: var(--accent-soft);
-  color: #d5c4ff;
+  color: #ffe4e6;
   font-size: 1.8rem;
 }
 
@@ -535,8 +535,8 @@ html::-webkit-scrollbar-thumb {
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: rgba(139, 92, 246, 0.18);
-  color: #ddd3ff;
+  background: rgba(220, 38, 38, 0.22);
+  color: #ffe7ea;
   font-size: 1.4rem;
   font-weight: 800;
 }
@@ -555,19 +555,52 @@ html::-webkit-scrollbar-thumb {
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #d5d9e8;
+  color: #ffe6ea;
 }
 
-.enquiry-form-card .helptext,
-.enquiry-form-card ul.errorlist {
+.enquiry-form-card .helptext {
   color: var(--text-muted);
   font-size: 1.2rem;
   list-style: none;
 }
 
+.enquiry-form-card ul.errorlist {
+  color: #f87171;
+  font-size: 1.2rem;
+  font-weight: 600;
+  list-style: none;
+}
+
 .btn-submit {
   width: 100%;
+  margin-top: 0;
+}
+
+.form-row {
+  display: grid;
+  gap: 6px;
+}
+
+.field-error-msg {
+  color: #f87171;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.enquiry-form-actions {
+  display: flex;
+  gap: 12px;
   margin-top: 8px;
+}
+
+.enquiry-form-actions .btn-secondary {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.enquiry-form-actions .btn-submit {
+  flex: 1;
+  width: auto;
 }
 
 .alert {
@@ -756,7 +789,7 @@ html::-webkit-scrollbar-thumb {
     align-items: stretch;
     min-width: 220px;
     padding: 12px;
-    background: rgba(20, 22, 29, 0.94);
+    background: rgba(44, 14, 18, 0.94);
     border: 1px solid var(--border);
     border-radius: 24px;
     box-shadow: var(--shadow-md);

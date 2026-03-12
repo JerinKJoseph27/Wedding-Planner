@@ -73,3 +73,62 @@ class Bookingform(forms.ModelForm):
         if event_type not in valid_choices:
             raise forms.ValidationError('Please select a valid event type.')
         return event_type
+
+
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Enter username',
+            'autocomplete': 'username',
+        }),
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Enter password',
+            'autocomplete': 'current-password',
+        }),
+    )
+
+
+class SignupForm(UserCreationForm):
+    email = forms.EmailField(
+        required=True,
+        widget=forms.EmailInput(attrs={'placeholder': 'Enter your email'}),
+    )
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Choose a username'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget = forms.PasswordInput(
+            attrs={'placeholder': 'Create a password (min 8 chars)'}
+        )
+        self.fields['password2'].widget = forms.PasswordInput(
+            attrs={'placeholder': 'Confirm your password'}
+        )
+
+    def clean_username(self):
+        username = self.cleaned_data['username'].strip()
+        if len(username) < 3:
+            raise forms.ValidationError('Username must be at least 3 characters.')
+        if not re.fullmatch(r'[A-Za-z0-9_]+', username):
+            raise forms.ValidationError('Only letters, numbers, and underscores are allowed.')
+        if User.objects.filter(username__iexact=username).exists():
+            raise forms.ValidationError('This username is already taken.')
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data['email'].strip().lower()
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError('An account with this email already exists.')
+        return email

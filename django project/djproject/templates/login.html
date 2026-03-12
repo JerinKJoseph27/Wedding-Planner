@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: #080710;
+  background-color: #15080b;
 }
 .background{
     width: 430px;
@@ -35,8 +35,8 @@ body{
 }
 .shape:first-child{
     background: linear-gradient(
-        #1845ad,
-        #23a2f6
+    #b91c1c,
+    #ef4444
     );
     left: -80px;
     top: -80px;
@@ -44,14 +44,15 @@ body{
 .shape:last-child{
     background: linear-gradient(
         to right,
-        #ff512f,
-        #f09819
+    #ef4444,
+    #ffe4e6
     );
     right: -30px;
     bottom: -80px;
 }
 form{
-    height: 520px;
+    height: auto;
+    min-height: 520px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -131,6 +132,55 @@ button{
 .social i{
   margin-right: 4px;
 }
+.field-error{
+  display:block;
+  color:#ff8080;
+  font-size:12px;
+  margin-top:4px;
+  font-weight:500;
+}
+.non-field-error{
+  background:rgba(255,80,80,0.14);
+  border:1px solid rgba(255,80,80,0.35) !important;
+  border-radius:6px;
+  padding:10px 14px;
+  font-size:13px;
+  color:#ff9999;
+  margin:14px 0;
+  display:block;
+}
+.form-actions{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:10px;
+  margin-top:40px;
+}
+.form-actions button{
+  margin-top:0;
+  width:100%;
+  padding:15px 0;
+  font-size:17px;
+  font-weight:600;
+  border-radius:5px;
+  cursor:pointer;
+  font-family:'Poppins',sans-serif;
+}
+.btn-submit-main{background-color:#ffffff;color:#080710;}
+.btn-reset{
+  background:rgba(255,255,255,0.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.2) !important;
+}
+.btn-reset:hover{background:rgba(255,255,255,0.22);}
+form a{
+  display:block;
+  margin-top:20px;
+  text-align:center;
+  font-size:14px;
+  color:#fecaca;
+  text-decoration:none;
+}
+form a:hover{text-decoration:underline;}
 
     </style>
 </head>
@@ -139,22 +189,40 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form method="post">
+    <form method="post" id="loginForm" novalidate>
         <h3>Login Here</h3>
-        {% csrf_token %} 
-        <label for="username">Username</label>
-        <input type="text" placeholder="Enter Username" id="username" name="username">
-
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password" name="pass">
-
-        <button type="submit">Log In</button>
-        <!-- <input type="button" value=""> -->
-        <!-- <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-        </div> -->
-        <a href="{% url 'signuppage' %}" >Create a account</a>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <span class="non-field-error">{{ form.non_field_errors.0 }}</span>
+        {% endif %}
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+        {% if form.username.errors %}<span class="field-error">{{ form.username.errors.0 }}</span>{% endif %}
+        <label for="{{ form.password.id_for_label }}">Password</label>
+        {{ form.password }}
+        {% if form.password.errors %}<span class="field-error">{{ form.password.errors.0 }}</span>{% endif %}
+        <div class="form-actions">
+            <button type="reset" class="btn-reset">Clear</button>
+            <button type="submit" class="btn-submit-main">Log In</button>
+        </div>
+        <a href="{% url 'signuppage' %}">Create an account</a>
     </form>
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.querySelectorAll('.js-err').forEach(function(el){ el.remove(); });
+        var ok = true;
+        var u = document.getElementById('id_username');
+        var p = document.getElementById('id_password');
+        if (!u.value.trim()) { addErr(u, 'Username is required.'); ok = false; }
+        if (!p.value) { addErr(p, 'Password is required.'); ok = false; }
+        if (!ok) e.preventDefault();
+    });
+    function addErr(field, msg) {
+        var s = document.createElement('span');
+        s.className = 'field-error js-err';
+        s.textContent = msg;
+        field.insertAdjacentElement('afterend', s);
+    }
+    </script>
 </body>
 </html>
